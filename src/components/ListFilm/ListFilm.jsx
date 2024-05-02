@@ -58,7 +58,7 @@ const ListFilm = ({ films }) => {
       <Slider ref={sliderRef} {...setting}>
         {films &&
           films.map((film, index) => (
-            <Link to={`/watchFilm/${films.slug}`}>
+            <Link to={`/watchFilm/${film.slug}`}>
               <FilmCard key={index} film={film} />
             </Link>
           ))}

@@ -1,15 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getDetailFilm } from "../components/Axios/NewFilm";
 
-// Tạo một context mới
 const FilmContext = createContext();
 
-// Component cung cấp context
 const GlobalFilmProvider = ({ children }) => {
   const [filmDetail, setFilmDetail] = useState({});
   const [link, setLink] = useState({
     file_name: "",
-    link_embed: "",
+    link_film: "",
   });
   const [film, setFilm] = useState({
     country: "",
@@ -32,10 +30,12 @@ const GlobalFilmProvider = ({ children }) => {
     setFilmDetail(respon); //show info film in watchFilm Page
   };
   const handleSetLink = (respon) => {
-    setLink({
-      file_name: respon[0].server_data[0].filename,
-      link_embed: respon[0].server_data[0].link_embed,
-    });
+    respon.map(info => {
+      setLink({
+        file_name: info.server_data[0].filename,
+        link_film: info.server_data[0].link_m3u8,
+      });
+    })
   };
   return (
     <FilmContext.Provider

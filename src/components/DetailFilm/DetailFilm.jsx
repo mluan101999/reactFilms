@@ -5,32 +5,43 @@ import { useMediaQuery } from "react-responsive";
 import { getDetailFilm } from "../Axios/NewFilm";
 import { FilmContext } from "../../context/GlobalFIlm";
 import ReactPlayer from "react-player";
+import Loading from "../Loading/Loading";
 
 const DetailFilm = () => {
+  let { slug } = useParams();
   const isPhone = useMediaQuery({
     query: "(max-width: 756px)",
   });
   const [watch, setWatch] = useState(false);
-  let { slug } = useParams();
+  const [loading, setLoading] = useState(true);
   const { filmDetail, link, handleSetFilmDetail, handleSetLink } =
     useContext(FilmContext);
+
   useEffect(() => {
     getDetailOneFilm(slug);
   }, []);
+
   const getDetailOneFilm = async (slug) => {
     try {
       const resp = await getDetailFilm(slug);
-      handleSetLink(resp.data.episodes);
+      handleSetLink(resp.data.episodes); 
       handleSetFilmDetail(resp.data.movie);
+      console.log(resp.data.episodes)
+      setTimeout(()=> {
+        setLoading(false);
+      },2000)
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleWatchFilm = () => {
     setWatch(!watch);
   };
+console.log(link.link_film)
   return (
-    <div className="detailFilm-container">
+    <>
+    {loading ? ( <Loading/> ) : ( <div className="detailFilm-container">
       <div className="detailFilm-redirect">
         Trang chủ / Phim Mới / {filmDetail.name}
       </div>
@@ -51,7 +62,7 @@ const DetailFilm = () => {
                 className={`${watch ? "watch-film-show" : "watch-film-hide"}`}
               >
                 <ReactPlayer
-                  url={link.link_embed.substr(39, 200)}
+                  url={link.link_film}
                   controls={true}
                   muted={true}
                   playing={false}
@@ -59,6 +70,7 @@ const DetailFilm = () => {
                     file: {
                       attributes: {
                         controlsList: "nofullscreen",
+                        crossOrigin: "true",
                       },
                     },
                   }}
@@ -168,7 +180,10 @@ const DetailFilm = () => {
         </div>
         <div className="detailFilm-list-suggest">List Film</div>
       </div>
-    </div>
+    </div>) }
+    </>
+   
+  
   );
 };
 
