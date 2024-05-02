@@ -1,0 +1,11 @@
+.newfilm-card-container img {
+  width: 10rem;
+  height: 14rem;
+  border: 1px solid #ffffff;
+  margin: 0 0.8rem;
+  transition: transform 0.2s ease;
+}
+.newfilm-card-container img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
