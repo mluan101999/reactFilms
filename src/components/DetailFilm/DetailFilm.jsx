@@ -117,7 +117,7 @@ const DetailFilm = () => {
 
                   <h2>{filmDetail.name}</h2>
                   <h4>{filmDetail.origin_name}</h4>
-                  <p>{filmDetail.content}</p>
+                  <p>{filmDetail.content}...</p>
                   <div className="watch-video-film-info">
                     <i
                       class="fa-solid fa-calendar-days"

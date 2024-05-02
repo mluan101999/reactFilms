@@ -19,7 +19,7 @@
 }
 .newfilm-content h5 {
   font-size: 4rem;
-  max-width: 460px;
+  max-width: 600px;
 }
 .content-info {
   padding: 1rem 0;
@@ -106,11 +106,14 @@
 .watch-now-btn:hover {
   background-color: #fff;
 }
-.lisfilm-test {
+/* .listfilm-container {
+  position: absolute;
+  max-width: 1300px;
+} */
+.listfilm-item {
   position: relative;
   max-width: 1300px;
   top: -16rem;
-  margin: auto;
   z-index: 2;
 }
 
@@ -135,4 +138,5 @@
   .newfilm-content p {
     font-size: 0.8rem;
   }
+ 
 }

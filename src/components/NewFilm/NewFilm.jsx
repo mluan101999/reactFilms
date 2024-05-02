@@ -53,8 +53,10 @@ const NewFilm = () => {
             </button>
           </div>
         </div>
-        <div className="lisfilm-test">
+        <div className="listfilm-container">
+          <div className="listfilm-item">
           <ListFilm films={films} />
+          </div>
         </div>
       </div>
     </>

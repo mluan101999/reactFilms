@@ -15,7 +15,6 @@ const ListFilm = ({ films }) => {
     slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
-    arrows: true,
     responsive: [
       {
         breakpoint: 1200,

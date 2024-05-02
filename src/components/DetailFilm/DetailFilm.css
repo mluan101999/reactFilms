@@ -51,6 +51,17 @@
 }
 .watch-video-film p {
   font-size: 0.9rem;
+  height: 180px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  cursor: pointer;
 }
 .watch-video-film-info {
   height: 4rem;
