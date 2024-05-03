@@ -1,3 +1,4 @@
+
 export const FILMS = [
     {
       "modified": {
@@ -120,7 +121,7 @@ export const FILMS = [
       "year": 2024
     }
   ];
-  export const DETAIL = {
+export const DETAIL = {
       "created": {
         "time": "2024-05-02T20:36:49.000Z"
       },
@@ -166,3 +167,18 @@ export const FILMS = [
        
       
     }
+
+export const LIST_TITLE_FILM = [
+  {
+    title: "Phim Mới Cập Nhật"
+  },
+  {
+    title: "Phim Lẻ Mới Nhất 2024"
+  },
+  {
+    title: "Phim Bộ Mới Nhất 2024"
+  },
+  {
+    title: "Phim Hoạt Hình Mới Nhất 2024"
+  }
+]

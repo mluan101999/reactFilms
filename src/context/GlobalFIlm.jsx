@@ -17,6 +17,10 @@ const GlobalFilmProvider = ({ children }) => {
     lang: "",
     content: "",
   });
+  const [singleFilms, setSingleFilm] = useState([]);
+  const [seriesFilms, setSeriesFilm] = useState([]);
+  const [animeFIlms, setAnimeFilm] = useState([]);
+  const [tvShowFilms, setTvShowFilm] = useState([]);
 
   const handleSetFilmDetail = (respon) => {
     setFilm({
@@ -41,10 +45,18 @@ const GlobalFilmProvider = ({ children }) => {
     <FilmContext.Provider
       value={{
         film,
+        singleFilms,
+        seriesFilms,
+        animeFIlms,
+        tvShowFilms,
         filmDetail,
         link,
         handleSetFilmDetail,
         handleSetLink,
+        setSingleFilm,
+        setSeriesFilm,
+        setAnimeFilm,
+        setTvShowFilm,
       }}
     >
       {children}

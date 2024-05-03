@@ -34,3 +34,17 @@
   color: #ffffff;
   overflow: hidden;
 }
+
+.newfilm-card-container p {
+  position: absolute;
+  display: block;
+  width: 30%;
+  height: 30px;
+  top: 2%;
+  left: 0.8rem;
+  background-color: #cfb73a;
+  color: #fff;
+ font-size: 0.8rem; 
+ line-height: 30px;
+ font-weight: 600;
+}

@@ -8,36 +8,31 @@ import React, {
 import "./NewFilm.css";
 import ListFilm from "../ListFilm/ListFilm";
 import { Link } from "react-router-dom";
-import { getDetailFilm, getNewFilm } from "../Axios/NewFilm";
+import {
+  getAnimeFilm,
+  getNewFilm,
+  getSeriesFilm,
+  getSignleFilm,
+  getTvShowFilm,
+} from "../Axios/NewFilm";
 import { FilmContext } from "../../context/GlobalFIlm";
-import { DETAIL, FILMS } from "../../utils/film";
+import { DETAIL, FILMS, LIST_TITLE_FILM } from "../../utils/film";
 import Slider from "react-slick";
+import Loading from "../Loading/Loading";
 
 const NewFilm = () => {
-  // const [films, setFilms] = useState([]);
-
-  // const { film, handleSetFilmDetail, handleSetLink } = useContext(FilmContext);
-  // useEffect(() => {
-  //   getFilm();
-  // }, []);
-  // const getFilm = async () => {
-  //   try {
-  //     const res = await getNewFilm();
-  //     getDetailOneFilm(res.data.items[0].slug);
-  //     setFilms(res.data.items);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const getDetailOneFilm = async (slug) => {
-  //   try {
-  //     const resp = await getDetailFilm(slug);
-  //     handleSetFilmDetail(resp.data.movie);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   const sliderRef = useRef();
+  const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const {
+    singleFilms,
+    seriesFilms,
+    animeFIlms,
+    setSingleFilm,
+    setSeriesFilm,
+    setAnimeFilm,
+  } = useContext(FilmContext);
+
   const setting = {
     dots: false,
     infinite: true,
@@ -46,6 +41,29 @@ const NewFilm = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+  };
+
+  useEffect(() => {
+    getFilm();
+  }, []);
+
+  const getFilm = async () => {
+    try {
+      const res = await getNewFilm();
+      const singleFilm = await getSignleFilm();
+      const seriesFilm = await getSeriesFilm();
+      const animeFilm = await getAnimeFilm();
+      // getDetailOneFilm(res.data.items[0].slug);
+      setFilms(res.data.items);
+      setSingleFilm(singleFilm.data.data.items);
+      setSeriesFilm(seriesFilm.data.data.items);
+      setAnimeFilm(animeFilm.data.data.items);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <>
@@ -79,10 +97,28 @@ const NewFilm = () => {
               </div>
             ))}
         </Slider>
-        <div className="list-newfilm">
-          <h5>Phim Mới Cập Nhật</h5>
-          <ListFilm films={FILMS} />
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Fragment>
+            <div className="list-newfilm">
+              <h5>Phim Lẻ Mới Nhất 2024</h5>
+              <ListFilm films={singleFilms} />
+            </div>
+            <div className="list-newfilm">
+              <h5>Phim Mới Cập Nhật</h5>
+              <ListFilm films={films} />
+            </div>
+            <div className="list-newfilm">
+              <h5>Phim Bộ Hoạt Hình Mới Nhất 2024</h5>
+              <ListFilm films={animeFIlms} />
+            </div>
+            <div className="list-newfilm">
+              <h5>Phim Bộ Mới Nhất 2024</h5>
+              <ListFilm films={seriesFilms} />
+            </div>
+          </Fragment>
+        )}
       </div>
     </>
   );

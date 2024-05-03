@@ -125,13 +125,13 @@
 }
 .list-newfilm {
   margin-top: 10px;
-  max-height: 1000px;
   padding: 0 0rem;
  
  z-index: 100;
 }
 .list-newfilm h5 {
   font-size: 2rem;
+  color: #cfb73a;
 }
 @media (max-width: 800px) {
   .newfilm-content {
