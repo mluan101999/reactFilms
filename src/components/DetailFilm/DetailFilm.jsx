@@ -6,6 +6,7 @@ import { getDetailFilm } from "../Axios/NewFilm";
 import { FilmContext } from "../../context/GlobalFIlm";
 import ReactPlayer from "react-player";
 import Loading from "../Loading/Loading";
+import PlayVideo from "../PlayVideo/PlayVideo";
 
 const DetailFilm = () => {
   let { slug } = useParams();
@@ -21,24 +22,35 @@ const DetailFilm = () => {
     getDetailOneFilm(slug);
   }, []);
 
-  const getDetailOneFilm = async (slug) => {
-    try {
-      const resp = await getDetailFilm(slug);
-      handleSetLink(resp.data.episodes);
-      handleSetFilmDetail(resp.data.movie);
-      console.log(resp.data.episodes);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.error(error);
-    }
+  const getDetailOneFilm = (slug) => {
+    const resp = getDetailFilm(slug)
+      .then((onfulfilled) => {
+        handleSetLink(onfulfilled.data.episodes);
+        handleSetFilmDetail(onfulfilled.data.movie);
+      })
+      .catch((onrejected) => console.log(onrejected))
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      });
   };
-
+  const play = {
+    fill: true,
+    fluid: true,
+    autoplay: false,
+    controls: true,
+    preload: "metadata",
+    sources: [
+      {
+        src: link.link_film,
+        type: "application/x-mpegURL",
+      },
+    ],
+  };
   const handleWatchFilm = () => {
     setWatch(!watch);
   };
-  console.log(link.link_film);
   return (
     <>
       {loading ? (
@@ -68,22 +80,7 @@ const DetailFilm = () => {
                       watch ? "watch-film-show" : "watch-film-hide"
                     }`}
                   >
-                    <ReactPlayer
-                      url={link.link_film}
-                      controls={true}
-                      muted={true}
-                      playing={false}
-                      config={{
-                        file: {
-                          attributes: {
-                            controlsList: "nofullscreen",
-                            crossOrigin: "true",
-                          },
-                        },
-                      }}
-                      width={"100%"}
-                      height={"100%"}
-                    />
+                    <PlayVideo {...play} width={100} />
                   </div>
                 </div>
                 {isPhone ? (
@@ -177,10 +174,7 @@ const DetailFilm = () => {
                       </span>
                     </li>
                     <li>
-                      Quốc gia:{" "}
-                      <span style={{ color: "#cfb73a" }}>
-                        {/* {film.country[0].name} */}
-                      </span>{" "}
+                      Quốc gia: <span style={{ color: "#cfb73a" }}></span>{" "}
                     </li>
                     <li>
                       IMDb: <span className="info-watch-rating">6.7</span>

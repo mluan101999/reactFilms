@@ -30,12 +30,12 @@ const GlobalFilmProvider = ({ children }) => {
     setFilmDetail(respon); //show info film in watchFilm Page
   };
   const handleSetLink = (respon) => {
-    respon.map(info => {
+    respon.map((info) => {
       setLink({
         file_name: info.server_data[0].filename,
         link_film: info.server_data[0].link_m3u8,
       });
-    })
+    });
   };
   return (
     <FilmContext.Provider
