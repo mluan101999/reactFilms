@@ -1,24 +1,42 @@
 .newfilm-container {
   position: relative;
-  overflow: hidden;
   height: 100vh;
+  padding: 5rem 3.5rem 0 3.5rem;
+  max-width: 1300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.newfilm-banner {
+  position: relative;
+  top: 20%;
+  max-width: 1300px;
+  height: 369px;
 }
 .newfilm-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  opacity: 0.3;
 }
 .newfilm-content {
   position: absolute;
-  top: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 3.5rem;
-  z-index: 2;
+  color: #fff;
+  width: 100%;
+  height: 100%;
 }
 .newfilm-btn a {
   color: #333333;
   text-decoration: none;
 }
 .newfilm-content h5 {
-  font-size: 4rem;
+  font-size: 2rem;
   max-width: 600px;
 }
 .content-info {
@@ -40,15 +58,14 @@
   overflow: hidden;
 }
 
-.newfilm-container::after,
+/* .newfilm-container::after,
 .newfilm-container::before {
   content: " ";
   width: 100vw;
   height: 5rem;
-  background: black;
+  background: #333;
   position: absolute;
-  z-index: 1;
-  filter: blur(220px);
+  filter: blur(500px);
 }
 .newfilm-container::after {
   height: 25rem;
@@ -60,8 +77,8 @@
   left: -23rem;
   width: 70%;
   height: 25rem;
-}
-.newfilm-content::before {
+} */
+/* .newfilm-content::before {
   content: " ";
   width: 35rem;
   height: 100vh;
@@ -73,7 +90,7 @@
 .newfilm-content::before {
   top: -10rem;
   left: -10rem;
-}
+} */
 .newfilm-btn {
   padding: 2rem 0;
   display: flex;
@@ -106,24 +123,36 @@
 .watch-now-btn:hover {
   background-color: #fff;
 }
-/* .listfilm-container {
-  position: absolute;
-  max-width: 1300px;
-} */
-.listfilm-item {
-  position: relative;
-  max-width: 1300px;
-  top: -16rem;
-  z-index: 2;
+.list-newfilm {
+  margin-top: 10px;
+  max-height: 1000px;
+  padding: 0 0rem;
+ 
+ z-index: 100;
+}
+.list-newfilm h5 {
+  font-size: 2rem;
+}
+@media (max-width: 800px) {
+  .newfilm-content {
+    font-size: 1rem;
+  }
+  .newfilm-content h5 {
+    font-size: 2rem;
+  }
+  .newfilm-container { 
+    padding: 5rem 1rem 0 1rem;
+  }
 }
 
 @media (max-width: 620px) {
-  .newfilm-content {
-    padding: 1rem;
-  }
+
   .newfilm-content h5 {
     font-size: 2.5rem;
     max-width: 360px;
+  }
+  .newfilm-content h5 {
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 414px) {
@@ -138,5 +167,12 @@
   .newfilm-content p {
     font-size: 0.8rem;
   }
- 
+  .newfilm-content {
+    padding: 2rem 1rem;
+  }
+}
+@media (max-width: 300px) {
+  .newfilm-content h5 {
+    font-size: 1.5rem;
+  }
 }

@@ -22,18 +22,13 @@ const DetailFilm = () => {
     getDetailOneFilm(slug);
   }, []);
 
-  const getDetailOneFilm = (slug) => {
-    const resp = getDetailFilm(slug)
-      .then((onfulfilled) => {
-        handleSetLink(onfulfilled.data.episodes);
-        handleSetFilmDetail(onfulfilled.data.movie);
-      })
-      .catch((onrejected) => console.log(onrejected))
-      .finally(() => {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      });
+  const getDetailOneFilm = async (slug) => {
+    const resp = await getDetailFilm(slug);
+    handleSetLink(resp.data.episodes);
+    handleSetFilmDetail(resp.data.movie);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
   const play = {
     fill: true,

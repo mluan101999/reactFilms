@@ -1,10 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  Fragment,
+} from "react";
 import "./NewFilm.css";
 import ListFilm from "../ListFilm/ListFilm";
 import { Link } from "react-router-dom";
 import { getDetailFilm, getNewFilm } from "../Axios/NewFilm";
 import { FilmContext } from "../../context/GlobalFIlm";
 import { DETAIL, FILMS } from "../../utils/film";
+import Slider from "react-slick";
 
 const NewFilm = () => {
   // const [films, setFilms] = useState([]);
@@ -30,34 +37,51 @@ const NewFilm = () => {
   //     console.error(error);
   //   }
   // };
+  const sliderRef = useRef();
+  const setting = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
   return (
     <>
       <div className="newfilm-container">
-        <img src={FILMS[0].thumb_url} alt="background" />
-        <div className="newfilm-content">
-          <h5>{FILMS[0] && FILMS[0].name}</h5>
-          <div className="content-info">
-            <span>{DETAIL.country}</span>
-            {} Views: {DETAIL.view} | {DETAIL.quality} | {DETAIL.time} | {DETAIL.lang}
-          </div>
-          <p>
-            {DETAIL.content.substr(0, 150)}
-            <span style={{ color: "yellow" }}>...See more</span>
-          </p>
+        <Slider ref={sliderRef} {...setting}>
+          {FILMS &&
+            FILMS.map((film, index) => (
+              <div key={index} className="newfilm-banner">
+                <img src={film.thumb_url} alt="background" />
+                <div className="newfilm-content">
+                  <h5>{film.name}</h5>
+                  <div className="content-info">
+                    <span>{DETAIL.country}</span>
+                    {} Views: {DETAIL.view} | {DETAIL.quality} | {DETAIL.time} |{" "}
+                    {DETAIL.lang}
+                  </div>
+                  <p>
+                    {DETAIL.content.substr(0, 120)}
+                    <span style={{ color: "yellow" }}>...See more</span>
+                  </p>
 
-          <div className="newfilm-btn">
-            <button className="watch-traller-btn">Watch traller</button>
-            <button className="watch-now-btn">
-              <Link to={`/watchFilm/${FILMS[0].slug}`}>
-                <i class="fa-solid fa-play"></i> Watch now
-              </Link>
-            </button>
-          </div>
-        </div>
-        <div className="listfilm-container">
-          <div className="listfilm-item">
+                  <div className="newfilm-btn">
+                    <button className="watch-traller-btn">Watch traller</button>
+                    <button className="watch-now-btn">
+                      <Link to={`/watchFilm/${film.slug}`}>
+                        <i class="fa-solid fa-play"></i> Watch now
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </Slider>
+        <div className="list-newfilm">
+          <h5>Phim Mới Cập Nhật</h5>
           <ListFilm films={FILMS} />
-          </div>
         </div>
       </div>
     </>

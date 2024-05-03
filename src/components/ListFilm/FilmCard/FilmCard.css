@@ -1,11 +1,36 @@
+.newfilm-card-container {
+  position: relative;
+}
 .newfilm-card-container img {
-  width: 10rem;
-  height: 14rem;
+  position: unset;
+  top: unset;
+  left: unset;
+  transform: unset;
+  width: 90%;
+  height: 16rem;
   border: 1px solid #ffffff;
   margin: 0 0.8rem;
   transition: transform 0.2s ease;
+  opacity: unset;
 }
-.newfilm-card-container img:hover {
-  transform: scale(1.2);
-  cursor: pointer;
+.newfilm-card-container span {
+  position: absolute;
+  width: 90%;
+  height: 50px;
+  margin: auto;
+  top: 80%;
+  left: 0.8rem;
+  background-color: black;
+  opacity: 0.7;
+}
+
+.newfilm-card-container div {
+  position: absolute;
+  width: 90%;
+  height: 50px;
+  margin: auto;
+  top: 80%;
+  left: 0.8rem;
+  color: #ffffff;
+  overflow: hidden;
 }

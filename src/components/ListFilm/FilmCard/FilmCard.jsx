@@ -5,6 +5,8 @@ const FilmCard = ({ film }) => {
   return (
     <div className="newfilm-card-container">
       <img src={film.poster_url} alt="thumnail" />
+      <span></span>
+      <div>{film.name}</div>
     </div>
   );
 };
