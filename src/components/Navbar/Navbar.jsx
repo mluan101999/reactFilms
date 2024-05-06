@@ -61,7 +61,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-bar-item">
-              <Link to="/trending" className="menu-item">
+              <Link to="/" className="menu-item">
                 Trending
               </Link>
             </li>
