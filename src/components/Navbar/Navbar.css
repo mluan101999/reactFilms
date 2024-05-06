@@ -42,6 +42,7 @@
   border-bottom: 1px solid #fff;
   color: #fff;
   outline: none;
+  width: 200px;
 }
 .menu-item {
   color: #fff;
@@ -74,12 +75,25 @@
     display: flex;
   }
 
-  .navbar-content ul {
+  .navbar-content .nav-bar-item {
     display: none;
   }
+  .navbar-content {
+    padding: 1rem 3.5rem;
+  }
+ 
 }
 @media (max-width: 620px) {
   .navbar-content {
-    padding: 0 1rem;
+    padding: 0 0.2rem;
+  }
+  .navbar-content ul li {
+    margin: 0 0.1rem;
+  }
+  .navbar-content ul{
+    padding: 0.2rem;
+  }
+  .menu-btn {
+    display: none;
   }
 }

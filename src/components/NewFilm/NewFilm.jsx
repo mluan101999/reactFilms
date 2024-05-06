@@ -13,10 +13,9 @@ import {
   getNewFilm,
   getSeriesFilm,
   getSignleFilm,
-  getTvShowFilm,
 } from "../Axios/NewFilm";
 import { FilmContext } from "../../context/GlobalFIlm";
-import { DETAIL, FILMS, LIST_TITLE_FILM } from "../../utils/film";
+import { DETAIL, FILMS } from "../../utils/film";
 import Slider from "react-slick";
 import Loading from "../Loading/Loading";
 
@@ -25,6 +24,7 @@ const NewFilm = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const {
+    findFilms,
     singleFilms,
     seriesFilms,
     animeFIlms,
@@ -53,7 +53,6 @@ const NewFilm = () => {
       const singleFilm = await getSignleFilm();
       const seriesFilm = await getSeriesFilm();
       const animeFilm = await getAnimeFilm();
-      // getDetailOneFilm(res.data.items[0].slug);
       setFilms(res.data.items);
       setSingleFilm(singleFilm.data.data.items);
       setSeriesFilm(seriesFilm.data.data.items);
@@ -68,56 +67,70 @@ const NewFilm = () => {
   return (
     <>
       <div className="newfilm-container">
-        <Slider ref={sliderRef} {...setting}>
-          {FILMS &&
-            FILMS.map((film, index) => (
-              <div key={index} className="newfilm-banner">
-                <img src={film.thumb_url} alt="background" />
-                <div className="newfilm-content">
-                  <h5>{film.name}</h5>
-                  <div className="content-info">
-                    <span>{DETAIL.country}</span>
-                    {} Views: {DETAIL.view} | {DETAIL.quality} | {DETAIL.time} |{" "}
-                    {DETAIL.lang}
-                  </div>
-                  <p>
-                    {DETAIL.content.substr(0, 120)}
-                    <span style={{ color: "yellow" }}>...See more</span>
-                  </p>
+        {findFilms.length !== 0 && (
+          <Fragment>
+            <div className="list-newfilm">
+              <h5>Kết quả tìm kiếm:</h5>
+              <ListFilm films={findFilms} />
+            </div>
+          </Fragment>
+        )}
+        {findFilms.length === 0 && (
+          <Slider ref={sliderRef} {...setting}>
+            {FILMS &&
+              FILMS.map((film, index) => (
+                <div key={index} className="newfilm-banner">
+                  <img src={film.thumb_url} alt="background" />
+                  <div className="newfilm-content">
+                    <h5>{film.name}</h5>
+                    <div className="content-info">
+                      <span>{DETAIL.country}</span>
+                      {} Views: {DETAIL.view} | {DETAIL.quality} | {DETAIL.time}{" "}
+                      | {DETAIL.lang}
+                    </div>
+                    <p>
+                      {DETAIL.content.substr(0, 120)}
+                      <span style={{ color: "yellow" }}>...See more</span>
+                    </p>
 
-                  <div className="newfilm-btn">
-                    <button className="watch-traller-btn">Watch traller</button>
-                    <button className="watch-now-btn">
-                      <Link to={`/watchFilm/${film.slug}`}>
-                        <i class="fa-solid fa-play"></i> Watch now
-                      </Link>
-                    </button>
+                    <div className="newfilm-btn">
+                      <button className="watch-traller-btn">
+                        Watch traller
+                      </button>
+                      <button className="watch-now-btn">
+                        <Link to={`/watchFilm/${film.slug}`}>
+                          <i class="fa-solid fa-play"></i> Watch now
+                        </Link>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-        </Slider>
+              ))}
+          </Slider>
+        )}
         {loading ? (
           <Loading />
         ) : (
-          <Fragment>
-            <div className="list-newfilm">
-              <h5>Phim Lẻ Mới Nhất 2024</h5>
-              <ListFilm films={singleFilms} />
-            </div>
-            <div className="list-newfilm">
-              <h5>Phim Mới Cập Nhật</h5>
-              <ListFilm films={films} />
-            </div>
-            <div className="list-newfilm">
-              <h5>Phim Bộ Hoạt Hình Mới Nhất 2024</h5>
-              <ListFilm films={animeFIlms} />
-            </div>
-            <div className="list-newfilm">
-              <h5>Phim Bộ Mới Nhất 2024</h5>
-              <ListFilm films={seriesFilms} />
-            </div>
-          </Fragment>
+          findFilms.length === 0 && (
+            <Fragment>
+              <div className="list-newfilm">
+                <h5>Phim Lẻ Mới Nhất 2024</h5>
+                <ListFilm films={singleFilms} />
+              </div>
+              <div className="list-newfilm">
+                <h5>Phim Mới Cập Nhật</h5>
+                <ListFilm films={films} />
+              </div>
+              <div className="list-newfilm">
+                <h5>Phim Bộ Hoạt Hình Mới Nhất 2024</h5>
+                <ListFilm films={animeFIlms} />
+              </div>
+              <div className="list-newfilm">
+                <h5>Phim Bộ Mới Nhất 2024</h5>
+                <ListFilm films={seriesFilms} />
+              </div>
+            </Fragment>
+          )
         )}
       </div>
     </>

@@ -44,7 +44,35 @@
   left: 0.8rem;
   background-color: #cfb73a;
   color: #fff;
- font-size: 0.8rem; 
- line-height: 30px;
- font-weight: 600;
+  font-size: 0.8rem; 
+  line-height: 30px;
+  font-weight: 600;
+  border-radius: 5px;
+  border-left: none;
+}
+.button-play-poster {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #cfb73a;
+  color: #fff;
+  font-size: 0.8rem; 
+  line-height: 30px;
+  font-weight: 600;
+  display: none;
+}
+
+.newfilm-card-container img:hover ~ .button-play-poster {
+  display: block;
+}
+
+.button-play-poster:hover {
+  display: block;
+}
+
+.newfilm-card-container img:hover {
+  opacity: 0.5;
 }

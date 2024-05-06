@@ -13,6 +13,7 @@ const FilmCard = ({ film }) => {
         }
         alt="thumnail"
       />
+      <i class="fa-solid fa-play button-play-poster"></i>
       <span></span>
       <div>{film.name}</div>
     </div>

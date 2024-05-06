@@ -7,7 +7,6 @@ const animeFilm = "https://phimapi.com/v1/api/danh-sach/hoat-hinh";
 const tvShowFilm = "https://phimapi.com/v1/api/danh-sach/tv-shows";
 const detailFilm = "https://phimapi.com/phim/";
 
-
 export const getNewFilm = () => {
   return axios.get(newFilm);
 };
@@ -29,4 +28,9 @@ export const getAnimeFilm = () => {
 
 export const getTvShowFilm = () => {
   return axios.get(tvShowFilm);
+};
+
+export const findFilm = (filmName,number) => {
+  const findFIlm = `https://phimapi.com/v1/api/tim-kiem?keyword=${filmName}&limit=${number}`
+  return axios.get(findFIlm);
 };
