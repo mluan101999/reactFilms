@@ -15,22 +15,12 @@ const MobileNav = ({ isOpen, toggleMenu }) => {
         <ul>
           <li>
             <Link to="/" className="menu-item">
-              New Movie
+              Login
             </Link>
           </li>
           <li>
             <Link to="/trending" className="menu-item">
-              Trending
-            </Link>
-          </li>
-          <li>
-            <Link to="" className="menu-item">
-              Mavel
-            </Link>
-          </li>
-          <li>
-            <Link to="" className="menu-item">
-              Phim Việt
+              Logout
             </Link>
           </li>
         </ul>

@@ -37,17 +37,23 @@ export const FILMS = [
       "year": 2022
     },
     {
-      "modified": {
-        "time": "2024-05-02T22:01:43.000Z"
-      },
-      "_id": "0845e4af78488cb5bacf0cbf68305d08",
-      "name": "Kỉ Nguyên Trigger (Phần 1)",
-      "slug": "ki-nguyen-trigger-phan-1",
-      "origin_name": "World Trigger (Season 1)",
-      "poster_url": "https://img.phimapi.com/upload/vod/20240428-1/9fb6fe71c887e3c61b0ade904e919761.jpg",
-      "thumb_url": "https://img.phimapi.com/upload/vod/20240428-1/c7ea1a14667a9d8de94100bf569a1628.jpg",
-      "year": 2014
+    "modified": {
+      "time": "2024-04-03T07:47:41.000Z"
     },
+    "_id": "ef96003dff3714cf3720aee9b14503b7",
+    "name": "Godzilla x Kong: Đế Chế Mới",
+    "slug": "godzilla-x-kong-de-che-moi",
+    "origin_name": "Godzilla x Kong: The New Empire",
+    "poster_url": "https://img.phimapi.com/upload/vod/20240402-1/9451c8ca38286b82764df85a9e51723c.jpg",
+    "thumb_url": "https://img.phimapi.com/upload/vod/20240402-1/06f2da6c8aa8f4c23158d875a54c43a0.jpg",
+    "sub_docquyen": true,
+    "chieurap": true,
+    "time": "115 phút",
+    "episode_current": "Full",
+    "quality": "CAM",
+    "lang": "Vietsub",
+    "year": 2024,
+  },
     {
       "modified": {
         "time": "2024-05-02T22:01:12.000Z"

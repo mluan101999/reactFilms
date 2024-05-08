@@ -1,21 +1,12 @@
-import React from 'react'
-import'./Loading.css'
+import React from "react";
+import "./Loading.css";
 
 const Loading = () => {
   return (
-    <div class="center">
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      </div>
-  )
-}
+    <div className="center">
+      <div className="spinner-2"></div>
+    </div>
+  );
+};
 
-export default Loading
+export default Loading;

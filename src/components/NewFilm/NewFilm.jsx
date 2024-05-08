@@ -18,12 +18,14 @@ import { FilmContext } from "../../context/GlobalFIlm";
 import { DETAIL, FILMS } from "../../utils/film";
 import Slider from "react-slick";
 import Loading from "../Loading/Loading";
+import SearchFilm from "../SearchFilm/SearchFilm";
 
 const NewFilm = () => {
   const sliderRef = useRef();
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const {
+    data,
     findFilms,
     singleFilms,
     seriesFilms,
@@ -67,11 +69,18 @@ const NewFilm = () => {
   return (
     <>
       <div className="newfilm-container">
+        <div className="newfilm-searchInput">
+          <SearchFilm />
+        </div>
         {findFilms.length !== 0 && (
           <Fragment>
             <div className="list-newfilm">
-              <h5>Kết quả tìm kiếm:</h5>
-              <ListFilm films={findFilms} />
+              <h5>Kết quả tìm kiếm: {data}</h5>
+              {findFilms.length !== 0 ? (
+                <ListFilm films={findFilms} />
+              ) : (
+                "<div>Rất tiếc, không có nội dung nào trùng khớp yêu cầu.</div>"
+              )}
             </div>
           </Fragment>
         )}
@@ -99,7 +108,7 @@ const NewFilm = () => {
                       </button>
                       <button className="watch-now-btn">
                         <Link to={`/watchFilm/${film.slug}`}>
-                          <i class="fa-solid fa-play"></i> Watch now
+                          <i className="fa-solid fa-play"></i> Watch now
                         </Link>
                       </button>
                     </div>

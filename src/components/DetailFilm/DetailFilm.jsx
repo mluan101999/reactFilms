@@ -92,18 +92,18 @@ const DetailFilm = () => {
                         className="watch-film-play"
                       >
                         <img src={filmDetail.poster_url} alt="image" />
-                        <i class="fa-solid fa-play watch-film-play-button"></i>
+                        <i className="fa-solid fa-play watch-film-play-button"></i>
                       </div>
                       <p>{filmDetail.content}</p>
                       <div className="watch-video-film-info">
                         <i
                           style={{ marginRight: "0.2rem" }}
-                          class="fa-solid fa-calendar-days"
+                          className="fa-solid fa-calendar-days"
                         ></i>
                         {filmDetail.year}
                         <i
                           style={{ marginLeft: "1rem", marginRight: "0.2rem" }}
-                          class="fa-regular fa-eye"
+                          className="fa-regular fa-eye"
                         ></i>
                         {filmDetail.view}
                       </div>
@@ -126,7 +126,7 @@ const DetailFilm = () => {
                         onClick={handleWatchFilm}
                         className="watch-film-play-button"
                       >
-                        <i class="fa-solid fa-play"></i>
+                        <i className="fa-solid fa-play"></i>
                       </div>
 
                       <h2>{filmDetail.name}</h2>
@@ -134,13 +134,13 @@ const DetailFilm = () => {
                       <p>{filmDetail.content}...</p>
                       <div className="watch-video-film-info">
                         <i
-                          class="fa-solid fa-calendar-days"
+                          className="fa-solid fa-calendar-days"
                           style={{ marginRight: "0.2rem" }}
                         ></i>
                         {filmDetail.year}
                         <i
                           style={{ marginLeft: "1rem", marginRight: "0.2rem" }}
-                          class="fa-regular fa-eye"
+                          className="fa-regular fa-eye"
                         ></i>
                         {filmDetail.view}
                       </div>
@@ -152,7 +152,7 @@ const DetailFilm = () => {
                 <h2>Thông tin phim:</h2>
                 <div className="watch-info-detail">
                   <ul>
-                    <li>Trạng thái:{filmDetail.status}</li>
+                    <li>Trạng thái: {filmDetail.status}</li>
                     <li>Thời lượng: {filmDetail.time}</li>
                     <li>
                       Độ phân giải:{" "}
@@ -177,9 +177,13 @@ const DetailFilm = () => {
                   </ul>
                 </div>
               </div>
-              <div className="watch-comment">Bình luận</div>
+              <div className="watch-comment">
+                Bình luận (Justin đang cập nhật tính năng này!)
+              </div>
             </div>
-            <div className="detailFilm-list-suggest">List Film</div>
+            <div className="detailFilm-list-suggest">
+              Phim hot tuần (Justin đang cập nhật tính năng này!)
+            </div>
           </div>
         </div>
       )}

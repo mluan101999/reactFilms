@@ -1,16 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import MobileNav from "./MobileNav/MobileNav";
-import { findFilm } from "../Axios/NewFilm";
-import { FilmContext } from "../../context/GlobalFIlm";
+import SearchFilm from "../SearchFilm/SearchFilm";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [searchBtn, setSearchBtn] = useState(false);
-  const [data, setData] = useState("");
-  const { findFilms, setFindFilms } = useContext(FilmContext);
-
+  const navigate = useNavigate();
   const handleSetSearchBtn = () => {
     setSearchBtn(!searchBtn);
   };
@@ -18,63 +16,42 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
   };
-  const handleFindFilm = async (value) => {
-    setData(value);
-    if (value === "") {
-      setFindFilms([]);
-    } else {
-      try {
-        const res = await findFilm(value, 100);
-        setFindFilms(res.data.data.items);
-      } catch (error) {}
-    }
+
+  const hanldeReloadPage = () => {
+    navigate("/");
   };
+  const notify = (message) => toast(message);
 
   return (
     <>
       <MobileNav isOpen={openMenu} toggleMenu={toggleMenu} />
       <nav className="navbar-wrapper">
         <div className="navbar-content">
-          <h2>
+          <h2 onClick={() => hanldeReloadPage()}>
             <span>JUSTIN</span> MOVIE
           </h2>
           {/* <img src="./assets/images/justinlogo.png" alt="logo" /> */}
           <ul>
-            <li>
-              <input
-                onChange={(e) => {
-                  handleFindFilm(e.target.value);
-                }}
-                value={data}
-                type="text"
-                placeholder="Ví dụ: Lat mat 7,..."
-              />
+            <li className="navbar-search-input">
+              <SearchFilm />
             </li>
-            <li className="nav-bar-item">
-              <Link to="" className="menu-item">
-                |
-              </Link>
-            </li>
-            <li className="nav-bar-item">
+            <li className="navbar-mobile-hide">|</li>
+            <li
+              className="navbar-mobile-hide"
+              onClick={() => notify("Justin đang phát triển tính năng này!")}
+            >
               <Link to="/" className="menu-item">
-                New Movie
+                Favourite
               </Link>
             </li>
-            <li className="nav-bar-item">
+            <li
+              className="navbar-mobile-hide"
+              onClick={() => notify("Justin đang phát triển tính năng này!")}
+            >
               <Link to="/" className="menu-item">
-                Trending
+                Login
               </Link>
             </li>
-            {/* <li>
-              <Link to="" className="menu-item">
-                Mavel
-              </Link>
-            </li>
-            <li>
-              <Link to="" className="menu-item">
-                Phim Việt
-              </Link>
-            </li> */}
           </ul>
           <button className="menu-btn" onClick={toggleMenu}>
             <span

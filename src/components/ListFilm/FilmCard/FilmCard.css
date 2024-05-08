@@ -76,3 +76,9 @@
 .newfilm-card-container img:hover {
   opacity: 0.5;
 }
+
+@media (max-width: 500px) {
+  .newfilm-card-container img {
+    margin: 0;
+  }
+}
