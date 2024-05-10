@@ -11,7 +11,7 @@ const SearchFilm = () => {
     handleFindFilm(searchValue);
   }, [debouncedSearchValue]);
   const handleFindFilm = async (value) => {
-    console.log(value);
+    // console.log(value);
     if (value === "") {
       setFindFilms([]);
     } else {
