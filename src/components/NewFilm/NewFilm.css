@@ -126,12 +126,14 @@
 .list-newfilm {
   margin-top: 10px;
   padding: 0 0rem;
- 
- z-index: 100;
+  z-index: 100;
 }
 .list-newfilm h5 {
   font-size: 2rem;
   color: #cfb73a;
+}
+.list-newfilm div {
+  text-align: center;
 }
 .newfilm-searchInput {
   position: fixed;
@@ -150,13 +152,12 @@
   .newfilm-content h5 {
     font-size: 2rem;
   }
-  .newfilm-container { 
+  .newfilm-container {
     padding: 5rem 1rem 0 1rem;
   }
 }
 
 @media (max-width: 620px) {
-
   .newfilm-content h5 {
     font-size: 2.5rem;
     max-width: 360px;
@@ -166,7 +167,7 @@
   }
 }
 @media (max-width: 530px) {
-  .newfilm-searchInput{
+  .newfilm-searchInput {
     display: block;
   }
   .slick-list {
@@ -179,6 +180,9 @@
   }
   .list-newfilm h5 {
     padding-left: 0.5rem;
+  }
+  .title-search-result {
+    margin-top: 4rem;
   }
 }
 @media (max-width: 414px) {
@@ -201,7 +205,7 @@
   .newfilm-content h5 {
     font-size: 1.5rem;
   }
-  .newfilm-searchInput input{
-    width: 90%; 
+  .newfilm-searchInput input {
+    width: 90%;
   }
 }

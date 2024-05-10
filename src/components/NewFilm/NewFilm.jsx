@@ -23,8 +23,8 @@ import SearchFilm from "../SearchFilm/SearchFilm";
 const NewFilm = () => {
   const sliderRef = useRef();
   const [films, setFilms] = useState([]);
-  const [loading, setLoading] = useState(true);
   const {
+    loading,
     searchValue,
     findFilms,
     singleFilms,
@@ -33,6 +33,7 @@ const NewFilm = () => {
     setSingleFilm,
     setSeriesFilm,
     setAnimeFilm,
+    setLoading,
   } = useContext(FilmContext);
 
   const setting = {
@@ -50,6 +51,7 @@ const NewFilm = () => {
   }, []);
 
   const getFilm = async () => {
+    setLoading(true);
     try {
       const res = await getNewFilm();
       const singleFilm = await getSignleFilm();
@@ -70,14 +72,18 @@ const NewFilm = () => {
         <div className="newfilm-searchInput">
           <SearchFilm />
         </div>
-        {findFilms.length !== 0 && (
+        {searchValue !== "" && (
           <Fragment>
             <div className="list-newfilm">
-              <h5>Kết quả tìm kiếm: {searchValue}</h5>
-              {findFilms.length !== 0 ? (
+              <h5 className="title-search-result">
+                Kết quả tìm kiếm: {searchValue}
+              </h5>
+              {loading ? (
+                <Loading />
+              ) : findFilms.length !== 0 ? (
                 <ListFilm films={findFilms} />
               ) : (
-                "<div>Rất tiếc, không có nội dung nào trùng khớp yêu cầu.</div>"
+                <div>Rất tiếc, không có nội dung nào trùng khớp yêu cầu.</div>
               )}
             </div>
           </Fragment>
@@ -85,7 +91,8 @@ const NewFilm = () => {
         {loading ? (
           <Loading />
         ) : (
-          findFilms.length === 0 && (
+          findFilms.length === 0 &&
+          searchValue === "" && (
             <Fragment>
               <Slider ref={sliderRef} {...setting}>
                 {FILMS &&
