@@ -22,7 +22,7 @@ const GlobalFilmProvider = ({ children }) => {
   const [animeFIlms, setAnimeFilm] = useState([]);
   const [tvShowFilms, setTvShowFilm] = useState([]);
   const [findFilms, setFindFilms] = useState([]);
-  const [data, setData] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const handleSetFilmDetail = (respon) => {
     setFilm({
       country: respon.country[0].name,
@@ -45,7 +45,7 @@ const GlobalFilmProvider = ({ children }) => {
   return (
     <FilmContext.Provider
       value={{
-        data,
+        searchValue,
         findFilms,
         film,
         singleFilms,
@@ -54,7 +54,7 @@ const GlobalFilmProvider = ({ children }) => {
         tvShowFilms,
         filmDetail,
         link,
-        setData,
+        setSearchValue,
         handleSetFilmDetail,
         handleSetLink,
         setSingleFilm,

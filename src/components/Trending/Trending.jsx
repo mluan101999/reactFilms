@@ -7,7 +7,7 @@ import SearchFilm from "../SearchFilm/SearchFilm";
 
 const Trending = () => {
   const [loading, setLoading] = useState(true);
-  const { data, findFilms } = useContext(FilmContext);
+  const { searchValue, findFilms } = useContext(FilmContext);
   return (
     <div className="newfilm-container">
       <div className="newfilm-searchInput">
@@ -16,7 +16,7 @@ const Trending = () => {
       {findFilms.length !== 0 && (
         <Fragment>
           <div className="list-newfilm">
-            <h5>Kết quả tìm kiếm: {data}</h5>
+            <h5>Kết quả tìm kiếm: {searchValue}</h5>
             {findFilms.length !== 0 ? (
               <ListFilm films={findFilms} />
             ) : (

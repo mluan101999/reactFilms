@@ -25,7 +25,7 @@ const NewFilm = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const {
-    data,
+    searchValue,
     findFilms,
     singleFilms,
     seriesFilms,
@@ -59,9 +59,7 @@ const NewFilm = () => {
       setSingleFilm(singleFilm.data.data.items);
       setSeriesFilm(seriesFilm.data.data.items);
       setAnimeFilm(animeFilm.data.data.items);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -75,7 +73,7 @@ const NewFilm = () => {
         {findFilms.length !== 0 && (
           <Fragment>
             <div className="list-newfilm">
-              <h5>Kết quả tìm kiếm: {data}</h5>
+              <h5>Kết quả tìm kiếm: {searchValue}</h5>
               {findFilms.length !== 0 ? (
                 <ListFilm films={findFilms} />
               ) : (
@@ -84,44 +82,42 @@ const NewFilm = () => {
             </div>
           </Fragment>
         )}
-        {findFilms.length === 0 && (
-          <Slider ref={sliderRef} {...setting}>
-            {FILMS &&
-              FILMS.map((film, index) => (
-                <div key={index} className="newfilm-banner">
-                  <img src={film.thumb_url} alt="background" />
-                  <div className="newfilm-content">
-                    <h5>{film.name}</h5>
-                    <div className="content-info">
-                      <span>{DETAIL.country}</span>
-                      {} Views: {DETAIL.view} | {DETAIL.quality} | {DETAIL.time}{" "}
-                      | {DETAIL.lang}
-                    </div>
-                    <p>
-                      {DETAIL.content.substr(0, 120)}
-                      <span style={{ color: "yellow" }}>...See more</span>
-                    </p>
-
-                    <div className="newfilm-btn">
-                      <button className="watch-traller-btn">
-                        Watch traller
-                      </button>
-                      <button className="watch-now-btn">
-                        <Link to={`/watchFilm/${film.slug}`}>
-                          <i className="fa-solid fa-play"></i> Watch now
-                        </Link>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </Slider>
-        )}
         {loading ? (
           <Loading />
         ) : (
           findFilms.length === 0 && (
             <Fragment>
+              <Slider ref={sliderRef} {...setting}>
+                {FILMS &&
+                  FILMS.map((film, index) => (
+                    <div key={index} className="newfilm-banner">
+                      <img src={film.thumb_url} alt="background" />
+                      <div className="newfilm-content">
+                        <h5>{film.name}</h5>
+                        <div className="content-info">
+                          <span>{DETAIL.country}</span>
+                          {} Views: {DETAIL.view} | {DETAIL.quality} |{" "}
+                          {DETAIL.time} | {DETAIL.lang}
+                        </div>
+                        <p>
+                          {DETAIL.content.substr(0, 120)}
+                          <span style={{ color: "yellow" }}>...See more</span>
+                        </p>
+
+                        <div className="newfilm-btn">
+                          <button className="watch-traller-btn">
+                            Watch traller
+                          </button>
+                          <button className="watch-now-btn">
+                            <Link to={`/watchFilm/${film.slug}`}>
+                              <i className="fa-solid fa-play"></i> Watch now
+                            </Link>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </Slider>
               <div className="list-newfilm">
                 <h5>Phim Lẻ Mới Nhất 2024</h5>
                 <ListFilm films={singleFilms} />
