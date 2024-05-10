@@ -19,6 +19,7 @@ import { DETAIL, FILMS } from "../../utils/film";
 import Slider from "react-slick";
 import Loading from "../Loading/Loading";
 import SearchFilm from "../SearchFilm/SearchFilm";
+import Footer from "../Footer/Footer";
 
 const NewFilm = () => {
   const sliderRef = useRef();
@@ -141,6 +142,7 @@ const NewFilm = () => {
                 <h5>Phim Bộ Mới Nhất 2024</h5>
                 <ListFilm films={seriesFilms} />
               </div>
+              <Footer />
             </Fragment>
           )
         )}

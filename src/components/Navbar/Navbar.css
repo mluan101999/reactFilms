@@ -36,7 +36,13 @@
   list-style: none;
 }
 .navbar-content ul li {
+  color: #cfb73a;
+  font-weight: 600;
   margin: 0 1.5rem;
+}
+.navbar-content ul li a {
+  color: #cfb73a;
+  font-weight: 600;
 }
 .menu-item {
   color: #fff;
@@ -83,7 +89,7 @@
   }
 }
 @media (max-width: 530px) {
-  .navbar-content ul{
+  .navbar-content ul {
     display: none;
   }
 }
@@ -97,7 +103,6 @@
 }
 @media (max-width: 570px) {
   .navbar-content ul {
-   padding-left: 0;
+    padding-left: 0;
   }
-  
 }
