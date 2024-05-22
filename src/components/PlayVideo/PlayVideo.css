@@ -7,3 +7,8 @@
 .vjs-big-play-button:hover {
     background-color: brown !important;
 }
+
+.video-js {
+    width: 100% !important;
+    height: auto !important;
+}
