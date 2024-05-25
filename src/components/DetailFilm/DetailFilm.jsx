@@ -181,9 +181,9 @@ const DetailFilm = () => {
                 Bình luận (Justin đang cập nhật tính năng này!)
               </div>
             </div>
-            <div className="detailFilm-list-suggest">
+            {/* <div className="detailFilm-list-suggest">
               Phim hot tuần (Justin đang cập nhật tính năng này!)
-            </div>
+            </div> */}
           </div>
         </div>
       )}
