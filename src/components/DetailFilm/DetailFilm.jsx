@@ -3,10 +3,14 @@ import "./DetailFilm.css";
 import { Link, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { getDetailFilm } from "../Axios/NewFilm";
+import { getComment } from "../Axios/NewFilm";
+
 import { FilmContext } from "../../context/GlobalFIlm";
 import ReactPlayer from "react-player";
 import Loading from "../Loading/Loading";
 import PlayVideo from "../PlayVideo/PlayVideo";
+import RatingMui from "./RatingMui";
+import { Rating } from "@mui/material";
 
 const DetailFilm = () => {
   let { slug } = useParams();
@@ -15,12 +19,14 @@ const DetailFilm = () => {
   });
   const [watch, setWatch] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { filmDetail, link, handleSetFilmDetail, handleSetLink } =
+  const { filmDetail, link, handleSetFilmDetail, handleSetLink, singleFilms } =
     useContext(FilmContext);
+  const [slugFilm,setSlugFilm] = useState(slug);
+  const [comments,setComments] = useState([])
 
   useEffect(() => {
     getDetailOneFilm(slug);
-  }, []);
+  }, [slugFilm]);
 
   const getDetailOneFilm = async (slug) => {
     const resp = await getDetailFilm(slug);
@@ -30,6 +36,17 @@ const DetailFilm = () => {
       setLoading(false);
     }, 1000);
   };
+
+  const getComments = async () => {
+    const res = await getComment()
+    console.log(res.data);
+    setComments(res.data)
+  }
+
+  useEffect(() => {
+    getComments();
+  },[])
+
   const play = {
     fill: true,
     fluid: true,
@@ -46,6 +63,7 @@ const DetailFilm = () => {
   const handleWatchFilm = () => {
     setWatch(!watch);
   };
+
   return (
     <>
       {loading ? (
@@ -169,7 +187,7 @@ const DetailFilm = () => {
                       </span>
                     </li>
                     <li>
-                      Quốc gia: <span style={{ color: "#cfb73a" }}></span>{" "}
+                      Quốc gia: {filmDetail.country[0].name} <span style={{ color: "#cfb73a" }}></span>
                     </li>
                     <li>
                       IMDb: <span className="info-watch-rating">6.7</span>
@@ -178,12 +196,75 @@ const DetailFilm = () => {
                 </div>
               </div>
               <div className="watch-comment">
-                Bình luận (Justin đang cập nhật tính năng này!)
+                <h2>Bình luận:</h2>
+                <div className="watch-comment-detail">
+                  {comments.map(comment => 
+                    <div className="watch-comment-info">
+                    <h3>{comment.name}</h3>
+                    <RatingMui rating={comment.rating / 2}/>
+                    <p>
+                      {comment.comment}
+                    </p>
+                  </div>
+                  )}
+                  <div className="watch-comment-input">
+                    <div className="watch-comment-img">
+                      <img
+                        src="https://th.bing.com/th/id/OIP.LU4Cmp_LvNOuhtWZnQMHvgHaHP?w=197&h=192&c=7&r=0&o=5&dpr=1.5&pid=1.7"
+                        width={"50px"}
+                      />
+                    </div>
+                    <div className="watch-comment-textinput">
+                      <input
+                        type="text"
+                        placeholder="Viết bình luận..."
+                      ></input>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            {/* <div className="detailFilm-list-suggest">
-              Phim hot tuần (Justin đang cập nhật tính năng này!)
-            </div> */}
+            <div className="detailFilm-list-suggest">
+              <div className="detailFilm-list-suggest-top">
+                <h5 style={{ color: "white" }}>PHIM TRẤN THÀNH (MAI)</h5>
+                <p>Mai</p>
+                <Rating
+                        size="medium"
+                        name="read-only"
+                        value={4}
+                        readOnly
+                      />              </div>
+              {singleFilms.map((element) => 
+                <div key={element._id} className="detailFilm-list-suggest-bottom">
+                  <div className="detailFilm-list-suggest-bottom-img">
+                  <Link  to={`/watchFilm/${element.slug}`}>
+                    <img
+                      src={`https://img.phimapi.com/${element.poster_url}`}
+                      width={"100%"}
+                      height={"70px"}
+                      onClick={() => setSlugFilm(element.slug)}
+                    />
+                  </Link>
+                  </div>
+                  <div className="detailFilm-list-suggest-bottom-content">
+                    <Link  to={`/watchFilm/${element.slug}`}>
+                      <h5 onClick={() => setSlugFilm(element.slug)}>{element.name}</h5>
+                    </Link>
+                    <p>{element.category[0].name}</p>
+                    <p>Thời lượng: {element.time}</p>
+                    <div className="detailFilm-list-suggest-bottom-content-rating">
+                      <Rating
+                        size="small"
+                        name="read-only"
+                        value={Math.random() * 5}
+                        readOnly
+                      />
+                      <div className="rating-quality">{element.quality} {element.lang}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

@@ -6,6 +6,7 @@ const seriesFilm = "https://phimapi.com/v1/api/danh-sach/phim-bo";
 const animeFilm = "https://phimapi.com/v1/api/danh-sach/hoat-hinh";
 const tvShowFilm = "https://phimapi.com/v1/api/danh-sach/tv-shows";
 const detailFilm = "https://phimapi.com/phim/";
+const comments ="https://65fbb5a414650eb2100a6bf9.mockapi.io/api/v1/comments"
 
 export const getNewFilm = () => {
   return axios.get(newFilm);
@@ -33,4 +34,8 @@ export const getTvShowFilm = () => {
 export const findFilm = (filmName,number) => {
   const findFIlm = `https://phimapi.com/v1/api/tim-kiem?keyword=${filmName}&limit=${number}`
   return axios.get(findFIlm);
+};
+
+export const getComment = () => {
+  return axios.get(comments);
 };
