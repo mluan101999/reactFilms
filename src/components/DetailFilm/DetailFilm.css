@@ -95,16 +95,30 @@
   color: #cfb73a;
   padding-bottom: 1rem;
 }
-.film-episodes ul{
-  /* style={{display:"flex",gap:"10px",listStyleType:"none",flexWrap:"wrap"}} */
+/* .film-episodes ul{
+  display: flex;
+  gap: 10px;
+  padding:0;
+  list-style-type: none;
+  flex-wrap: wrap;
+} */
+.episode-50{
   display: flex;
   gap: 10px;
   padding:0;
   list-style-type: none;
   flex-wrap: wrap;
 }
+.episode-100{
+  display: flex;
+  gap: 10px;
+  padding:0;
+  list-style-type: none;
+  flex-wrap: wrap;
+  height: 200px;
+  overflow-y: auto;
+}
 .film-episodes li {
-  /* style={{border:"1px solid white",heiglt:"25px",width:"60px",display:"flex",justifyContent:"center",alignItems:"center"}} */
   border: 1px solid white;
   border-radius: 5px;
   height: 25px;

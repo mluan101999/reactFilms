@@ -22,7 +22,7 @@ const DetailFilm = () => {
     useContext(FilmContext);
   const [slugFilm, setSlugFilm] = useState(slug);
   const [comments, setComments] = useState([])
-  const [filmEpisodes,setFilmEpisodes] = useState([]);
+  const [filmEpisodes, setFilmEpisodes] = useState([]);
 
   useEffect(() => {
     getDetailOneFilm(slug);
@@ -31,7 +31,6 @@ const DetailFilm = () => {
   const getDetailOneFilm = async (slug) => {
     const resp = await getDetailFilm(slug);
     handleSetLink(resp.data.episodes);
-    console.log(resp.data.episodes);
     handleSetFilmDetail(resp.data.movie);
     setFilmEpisodes(resp.data.episodes[0].server_data)
     setTimeout(() => {
@@ -68,6 +67,7 @@ const DetailFilm = () => {
     console.log(episode);
     // handleSetLink(episode)
   }
+  console.log(filmEpisodes.length);
   return (
     <>
       {loading ? (
@@ -170,7 +170,7 @@ const DetailFilm = () => {
               <div className="film-episodes">
                 <h2>Tập phim</h2>
                 <div className="film-episodes-detail">
-                  <ul>
+                  <ul className={filmEpisodes.length > 30 ? "episode-100" : "episode-50"}>
                     {
                       // filmEpisodes.map((episode, index) => (
                       //   <li key={index}>
@@ -226,7 +226,7 @@ const DetailFilm = () => {
               <div className="watch-comment">
                 <h2>Bình luận:</h2>
                 <div className="watch-comment-detail">
-                  {comments.map((comment,index) =>
+                  {comments.map((comment, index) =>
                     <div key={index} className="watch-comment-info">
                       <h3>{comment.name}</h3>
                       <RatingMui rating={comment.rating / 2} />
