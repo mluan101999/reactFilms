@@ -87,6 +87,33 @@
   padding-bottom: 1rem;
 }
 
+.film-episodes{
+  margin-top: 2rem;
+  position: relative;
+}
+.film-episodes h2 {
+  color: #cfb73a;
+  padding-bottom: 1rem;
+}
+.film-episodes ul{
+  /* style={{display:"flex",gap:"10px",listStyleType:"none",flexWrap:"wrap"}} */
+  display: flex;
+  gap: 10px;
+  padding:0;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+.film-episodes li {
+  /* style={{border:"1px solid white",heiglt:"25px",width:"60px",display:"flex",justifyContent:"center",alignItems:"center"}} */
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 25px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .watch-video-film-mobile {
   position: absolute;
   top: 0;
