@@ -126,6 +126,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.film-episodes li:hover {
+  border: 1px solid yellow;
+  background-color: whitesmoke;
+  color: #363535;
+  border-radius: 5px;
+  height: 25px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .watch-video-film-mobile {
@@ -328,10 +341,28 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .watch-comment-input {
+    width: 100%;
+    margin-top: 1.563rem;
+    border-top: 1px solid yellow;
+    padding-top: 1.25rem;
+    display: flex;
+    gap: 3rem;
+  }
+  .watch-comment-img {
+    width: 5%;
+  }
+  .watch-comment-textinput {
+    width: 80%;
+    height: 50px;
+  }
 }
 
 @media (max-width: 919px) {
   .watch-video-film p {
     font-size: 0.6rem;
+  }
+  .detailFilm-list-suggest{
+    display: none;
   }
 }

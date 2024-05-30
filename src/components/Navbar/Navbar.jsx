@@ -28,7 +28,7 @@ const Navbar = () => {
       <nav className="navbar-wrapper">
         <div className="navbar-content">
           <h2 onClick={() => hanldeReloadPage()}>
-            <span>JUSTIN</span> MOVIE
+            <span>LUAN</span> MOVIE
           </h2>
           {/* <img src="./assets/images/justinlogo.png" alt="logo" /> */}
           <ul>
@@ -38,7 +38,7 @@ const Navbar = () => {
             <li className="navbar-mobile-hide">|</li>
             <li
               className="navbar-mobile-hide"
-              onClick={() => notify("Justin đang phát triển tính năng này!")}
+              onClick={() => notify("Admin đang phát triển tính năng này!")}
             >
               <Link to="/" className="menu-item">
                 Favourite
@@ -46,9 +46,9 @@ const Navbar = () => {
             </li>
             <li
               className="navbar-mobile-hide"
-              onClick={() => notify("Justin đang phát triển tính năng này!")}
+              // onClick={() => notify("Justin đang phát triển tính năng này!")}
             >
-              <Link to="/" className="menu-item">
+              <Link to="/login" className="menu-item">
                 Login
               </Link>
             </li>

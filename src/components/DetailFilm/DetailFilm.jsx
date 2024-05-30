@@ -67,7 +67,8 @@ const DetailFilm = () => {
     console.log(episode);
     // handleSetLink(episode)
   }
-  console.log(filmEpisodes.length);
+  const phimhot = singleFilms.filter(item => item._id !== filmDetail._id);
+  console.log(phimhot);
   return (
     <>
       {loading ? (
@@ -170,7 +171,7 @@ const DetailFilm = () => {
               <div className="film-episodes">
                 <h2>Tập phim</h2>
                 <div className="film-episodes-detail">
-                  <ul className={filmEpisodes.length > 30 ? "episode-100" : "episode-50"}>
+                  <ul className={filmEpisodes.length > 35 ? "episode-100" : "episode-50"}>
                     {
                       // filmEpisodes.map((episode, index) => (
                       //   <li key={index}>
@@ -264,8 +265,9 @@ const DetailFilm = () => {
                   name="read-only"
                   value={4}
                   readOnly
-                />              </div>
-              {singleFilms.map((element) =>
+                />              
+              </div>
+              {phimhot.map((element) =>
                 <div key={element._id} className="detailFilm-list-suggest-bottom">
                   <div className="detailFilm-list-suggest-bottom-img">
                     <Link to={`/watchFilm/${element.slug}`}>

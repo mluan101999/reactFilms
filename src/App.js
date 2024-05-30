@@ -6,7 +6,8 @@ import NewFilm from "./components/NewFilm/NewFilm";
 import { Routes, Route } from "react-router-dom";
 import Trending from "./components/Trending/Trending";
 import DetailFilm from "./components/DetailFilm/DetailFilm";
-import { WATCH_DETAILFILM_ROUTE, SEARCH_FILM_ROUTE } from "./utils/route";
+import { WATCH_DETAILFILM_ROUTE, SEARCH_FILM_ROUTE, LOGIN } from "./utils/route";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           <Route path="/" element={<NewFilm />} />
           <Route path={SEARCH_FILM_ROUTE} element={<Trending />} />
           <Route path={WATCH_DETAILFILM_ROUTE} element={<DetailFilm />} />
+          <Route path={WATCH_DETAILFILM_ROUTE} element={<DetailFilm />} />
+          <Route path={LOGIN} element={<Login />} />
+
         </Routes>
       </div>
       <ToastContainer />
